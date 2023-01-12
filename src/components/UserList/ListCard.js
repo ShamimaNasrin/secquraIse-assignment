@@ -2,7 +2,7 @@ import React from 'react';
 
 const ListCard = () => {
     return (
-        <div className='bg-slate-200 p-1'>
+        <div className='bg-zinc-200 p-1 hover:bg-zinc-500 hover:text-white'>
             <div className="flex justify-between">
                 <div className="flex flex-col justify-between font-medium text-start pl-1">
                     <p>EVT0024: Chennai</p>

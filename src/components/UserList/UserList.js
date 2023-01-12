@@ -4,7 +4,7 @@ import ListCard from './ListCard';
 
 const UserList = () => {
     return (
-        <div className='border-8 border-slate-200 p-2'>
+        <div className='border-8 border-zinc-200 p-2'>
 
             {/* section one start */}
             <div className='flex justify-between items-start'>

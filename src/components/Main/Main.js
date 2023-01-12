@@ -8,11 +8,11 @@ const Main = () => {
         <div>
             <div className=''>
                 <Navbar></Navbar>
-                <div className="grid grid-cols-3 h-[92vh]">
-                    <div className='col-span-2 w-full'>
+                <div className="grid lg:grid-cols-3 grid-cols-1 h-[92vh]">
+                    <div className='lg:col-span-2 w-full'>
                         <UserDetails></UserDetails>
                     </div>
-                    <div className='w-full'>
+                    <div className='w-full lg:mt-0 mt-8 mx-auto'>
                         <UserList></UserList>
                     </div>
                 </div>
