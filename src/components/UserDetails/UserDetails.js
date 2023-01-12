@@ -8,7 +8,7 @@ const UserDetails = () => {
         <div className='flex h-full w-full pr-14'>
             {/* left blue bar */}
             <div className='bg-sky-400 w-[75px] flex flex-col justify-between'>
-                <IoMdMenu className='text-3xl mx-auto mt-1 text-white'></IoMdMenu>
+                <IoMdMenu className='text-4xl mx-auto mt-1 text-white'></IoMdMenu>
                 <RiLogoutBoxRLine className='text-3xl mx-auto mb-10 text-white'></RiLogoutBoxRLine>
             </div>
             <div className='flex pl-7 w-full'>
