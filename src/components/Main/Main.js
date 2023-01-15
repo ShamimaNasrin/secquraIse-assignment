@@ -7,8 +7,9 @@ import { db } from '../../firebase/firebase.config';
 
 const Main = () => {
     const [data, setData] = useState([]);
+    const [selectedPerson, setSelectedPerson] = useState(null);
 
-
+    // fetch all data from firebase
     useEffect(() => {
         const fetchData = async () => {
             let list = [];
@@ -28,6 +29,12 @@ const Main = () => {
 
     }, []);
 
+    // get selected person
+    const handleSelectedPerson = (selectedP) => {
+        //console.log(selectedP);
+        setSelectedPerson(selectedP);
+    }
+
 
 
 
@@ -37,10 +44,15 @@ const Main = () => {
                 <Navbar></Navbar>
                 <div className="grid lg:grid-cols-3 grid-cols-1 h-[92vh]">
                     <div className='lg:col-span-2 w-full'>
-                        <UserDetails></UserDetails>
+                        <UserDetails
+                            selectedPerson={selectedPerson}
+                        ></UserDetails>
                     </div>
                     <div className='w-full lg:mt-0 mt-8 mx-auto'>
-                        <UserList data={data}></UserList>
+                        <UserList
+                            data={data}
+                            handleSelectedPerson={handleSelectedPerson}
+                        ></UserList>
                     </div>
                 </div>
             </div>

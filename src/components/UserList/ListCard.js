@@ -1,10 +1,10 @@
 import React from 'react';
 
-const ListCard = ({person}) => {
+const ListCard = ({person, handleSelectedPerson}) => {
     const {Name, Location, ID, Date, Time} = person;
     // console.log(Name, Location, ID, Date, Time);
     return (
-        <div className='bg-zinc-200 p-1 hover:bg-zinc-500 hover:text-white'>
+        <div onClick={() => handleSelectedPerson(person)} className='bg-zinc-200 p-1 hover:bg-zinc-500 hover:text-white'>
             <div className="flex justify-between">
                 <div className="flex flex-col justify-between font-medium text-start pl-1">
                     <p>{ID}: {Location}</p>

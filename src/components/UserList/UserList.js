@@ -2,7 +2,7 @@ import React from 'react';
 import { RiMenuFoldFill } from "react-icons/ri";
 import ListCard from './ListCard';
 
-const UserList = ({ data }) => {
+const UserList = ({ data, handleSelectedPerson }) => {
     return (
         <div className='border-8 border-zinc-200 p-2 max-h-[90vh] overflow-y-auto'>
 
@@ -50,7 +50,9 @@ const UserList = ({ data }) => {
                 {
                     data.map((person) => <ListCard
                         key={person.id}
-                        person={person}></ListCard>)
+                        person={person}
+                        handleSelectedPerson={handleSelectedPerson}
+                        ></ListCard>)
                 }
             </div>
             {/* section two(List of person) end */}
