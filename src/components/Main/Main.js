@@ -1,9 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../Navbar/Navbar';
 import UserDetails from '../UserDetails/UserDetails';
 import UserList from '../UserList/UserList';
+import { doc, collection, addDoc, getDocs } from "firebase/firestore";
+import { db } from '../../firebase/firebase.config';
 
 const Main = () => {
+    const [data, setData] = useState([]);
+
+
+    useEffect(() => {
+        const fetchData = async () => {
+            let list = [];
+            try {
+                const querySnapshot = await getDocs(collection(db, "personcollection"));
+                querySnapshot.forEach((doc) => {
+                    list.push({ id: doc.id, ...doc.data() });
+                });
+                setData(list);
+                //console.log(list);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        fetchData();
+        //console.log("data:",data);
+
+    }, []);
+
+
+
+
     return (
         <div>
             <div className=''>
@@ -13,7 +40,7 @@ const Main = () => {
                         <UserDetails></UserDetails>
                     </div>
                     <div className='w-full lg:mt-0 mt-8 mx-auto'>
-                        <UserList></UserList>
+                        <UserList data={data}></UserList>
                     </div>
                 </div>
             </div>

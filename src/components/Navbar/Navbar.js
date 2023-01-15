@@ -5,8 +5,8 @@ const Navbar = () => {
     //header menus
     const menuItems = <>
         <li><input type="text" placeholder="Search" className="input input-bordered rounded-none" /></li>
-        <li><button className="btn w-24 rounded-none text-xl lg:mt-0 mt-1 lg:ml-2 text-black bg-lime-500">25</button></li>
-        <li><button className="btn w-24 rounded-none text-xl lg:mt-0 mt-1 lg:ml-2 text-white bg-red-500">25</button></li>
+        <li><div className="w-24 rounded-none flex justify-center items-center text-xl lg:mt-0 mt-1 lg:ml-2 text-black bg-lime-500">25</div></li>
+        <li><div className="w-24 rounded-none flex justify-center items-center text-xl lg:mt-0 mt-1 lg:ml-2 text-white bg-red-500">25</div></li>
     </>
     return (
         <div>

@@ -2,9 +2,9 @@ import React from 'react';
 import { RiMenuFoldFill } from "react-icons/ri";
 import ListCard from './ListCard';
 
-const UserList = () => {
+const UserList = ({ data }) => {
     return (
-        <div className='border-8 border-zinc-200 p-2'>
+        <div className='border-8 border-zinc-200 p-2 max-h-[90vh] overflow-y-auto'>
 
             {/* section one start */}
             <div className='flex justify-between items-start'>
@@ -48,9 +48,9 @@ const UserList = () => {
             {/* section two(List of person) start */}
             <div className="grid grid-cols-1 gap-2 mt-3">
                 {
-                    [...Array(7)].map((card, i) => <ListCard
-                        key={i}
-                        card={card}></ListCard>)
+                    data.map((person) => <ListCard
+                        key={person.id}
+                        person={person}></ListCard>)
                 }
             </div>
             {/* section two(List of person) end */}

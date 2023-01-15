@@ -1,44 +1,8 @@
-import React from 'react';
 import { IoMdMenu } from "react-icons/io";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 import person from '../../Images/Female25.jpg';
-import { doc, setDoc, collection, addDoc, getDocs } from "firebase/firestore";
-import { db } from '../../firebase/firebase.config';
 
 const UserDetails = () => {
-
-    const handleAdd = async () => {
-        // Add a new document in collection "personcollection"
-        try {
-            const res = await addDoc(collection(db, "personcollection"), {
-                ID: "EVT0050",
-                Location: "Chennai",
-                Gender: "Female",
-                Name: "Female25",
-                Date: "9-Jan-23",
-                Time: "13:32:13"
-            });
-            console.log(res.id);
-        } catch (err) {
-            console.error(err);
-        }
-    };
-
-    const handleGetData = async () => {
-        // Get all data in collection "personcollection"
-        try {
-            const querySnapshot = await getDocs(collection(db, "personcollection"));
-            querySnapshot.forEach((doc) => {
-                // doc.data() is never undefined for query doc snapshots
-                console.log(doc.data());
-            });
-            // console.log(querySnapshot.docs);
-
-            
-        } catch (err) {
-            console.error(err);
-        }
-    };
 
     return (
         <div className='flex lg:flex-row sm:flex-col flex-col h-full w-full lg:pr-14 sm:pr-0 pr-0'>
@@ -86,7 +50,7 @@ const UserDetails = () => {
                         <p className='lg:w-[57%] w-[72%]'>Female25 detected at Chennai on 9th January, 2023.</p>
 
                         {/* <button className='btn' onClick={handleAdd}>send</button> */}
-                        <button className='btn' onClick={handleGetData}>Get</button>
+                        {/* <button className='btn' onClick={handleGetData}>Get</button> */}
                     </div>
                 </div>
                 {/* person photo */}
