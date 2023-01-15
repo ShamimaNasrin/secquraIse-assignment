@@ -2,8 +2,22 @@ import React from 'react';
 import { IoMdMenu } from "react-icons/io";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 import person from '../../Images/Female25.jpg';
+import { doc, setDoc, collection, addDoc } from "firebase/firestore";
+import { db } from '../../firebase/firebase.config';
 
 const UserDetails = () => {
+
+    const handleAdd = async () => {
+        // Add a new document in collection "cities"
+        const res = await addDoc(collection(db, "personcollection"), {
+            name: "New york",
+            state: "CA",
+            country: "UK"
+        });
+
+        console.log(res.id);
+    };
+
     return (
         <div className='flex lg:flex-row sm:flex-col flex-col h-full w-full lg:pr-14 sm:pr-0 pr-0'>
             {/* left blue bar */}
@@ -48,6 +62,8 @@ const UserDetails = () => {
                     <div className='mt-6 text-xl font-semibold'>
                         <p>Description:</p>
                         <p className='lg:w-[57%] w-[72%]'>Female25 detected at Chennai on 9th January, 2023.</p>
+
+                        <button className='btn' onClick={handleAdd}>send</button>
                     </div>
                 </div>
                 {/* person photo */}
