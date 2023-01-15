@@ -1,12 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = ({data}) => {
+
+    // count the number of male and female
+    const male = data.filter((obj) => obj.Gender === 'Male').length;
+    // console.log('male',male);
+    const female = data.filter((obj) => obj.Gender === 'Female').length;
+    // console.log('female',female);
+
     //header menus
     const menuItems = <>
         <li><input type="text" placeholder="Search" className="input input-bordered rounded-none" /></li>
-        <li><div className="w-24 rounded-none flex justify-center items-center text-xl lg:mt-0 mt-1 lg:ml-2 text-black bg-lime-500">25</div></li>
-        <li><div className="w-24 rounded-none flex justify-center items-center text-xl lg:mt-0 mt-1 lg:ml-2 text-white bg-red-500">25</div></li>
+        <li><div className="w-24 rounded-none flex justify-center items-center text-xl lg:mt-0 mt-1 lg:ml-2 text-black bg-lime-500">{male}</div></li>
+        <li><div className="w-24 rounded-none flex justify-center items-center text-xl lg:mt-0 mt-1 lg:ml-2 text-white bg-red-500">{female}</div></li>
     </>
     return (
         <div>

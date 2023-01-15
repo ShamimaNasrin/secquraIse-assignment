@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '../Navbar/Navbar';
 import UserDetails from '../UserDetails/UserDetails';
 import UserList from '../UserList/UserList';
-import { doc, collection, addDoc, getDocs } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { db } from '../../firebase/firebase.config';
 
 const Main = () => {
     const [data, setData] = useState([]);
-    const [selectedPerson, setSelectedPerson] = useState(null);
+    const [selectedPerson, setSelectedPerson] = useState(0);
 
     // fetch all data from firebase
     useEffect(() => {
@@ -35,13 +35,13 @@ const Main = () => {
         setSelectedPerson(selectedP);
     }
 
-
-
-
     return (
         <div>
             <div className=''>
-                <Navbar></Navbar>
+                <Navbar
+                    data={data}
+                ></Navbar>
+
                 <div className="grid lg:grid-cols-3 grid-cols-1 h-[92vh]">
                     <div className='lg:col-span-2 w-full'>
                         <UserDetails
