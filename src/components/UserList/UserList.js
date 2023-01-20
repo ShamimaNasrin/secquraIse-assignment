@@ -16,10 +16,7 @@ const UserList = ({ data, handleSelectedPerson }) => {
         const gender = form.gender.value;
         const date = form.date.value;
         const newDate = format(new Date(date), 'd-MMM-yy')
-        console.log(location, gender, newDate);
-
-
-
+        //console.log(location, gender, newDate);
 
         const personCollection = collection(db, "personcollection");
         const q = query(personCollection, where("Gender", "==", gender), where("Location", "==", location), where("Date", "==", newDate));
