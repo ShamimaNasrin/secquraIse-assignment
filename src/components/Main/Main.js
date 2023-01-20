@@ -50,6 +50,7 @@ const Main = () => {
                     </div>
                     <div className='w-full lg:mt-0 mt-8 mx-auto'>
                         <UserList
+                            data={data}
                             handleSelectedPerson={handleSelectedPerson}
                         ></UserList>
                     </div>

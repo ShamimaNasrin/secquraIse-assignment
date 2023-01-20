@@ -3,9 +3,10 @@ import { RiMenuFoldFill } from "react-icons/ri";
 import ListCard from './ListCard';
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from '../../firebase/firebase.config';
+import { format, compareAsc } from 'date-fns'
 
-const UserList = ({ handleSelectedPerson }) => {
-    const [filterData, setFilterData] = useState([]);
+const UserList = ({ data, handleSelectedPerson }) => {
+    const [filterData, setFilterData] = useState(data);
 
     // filter data accoring to location, gender and date
     const handleFilter = (event) => {
@@ -14,10 +15,14 @@ const UserList = ({ handleSelectedPerson }) => {
         const location = form.location.value;
         const gender = form.gender.value;
         const date = form.date.value;
-        console.log(location, gender, date);
+        const newDate = format(new Date(date), 'd-MMM-yy')
+        console.log(location, gender, newDate);
+
+
+
 
         const personCollection = collection(db, "personcollection");
-        const q = query(personCollection, where("Gender", "==", gender), where("Location", "==", location));
+        const q = query(personCollection, where("Gender", "==", gender), where("Location", "==", location), where("Date", "==", newDate));
 
         const fetchQueryData = async () => {
             let listData = [];
@@ -27,7 +32,7 @@ const UserList = ({ handleSelectedPerson }) => {
                     listData.push({ id: doc.id, ...doc.data() });
                 });
                 setFilterData(listData);
-                console.log(listData);
+                //console.log(listData);
             }
             catch (err) {
                 console.log(err);
