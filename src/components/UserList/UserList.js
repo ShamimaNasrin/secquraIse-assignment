@@ -5,8 +5,9 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from '../../firebase/firebase.config';
 import { format, compareAsc } from 'date-fns'
 
-const UserList = ({ data, handleSelectedPerson }) => {
-    const [filterData, setFilterData] = useState(data);
+const UserList = ({ handleSelectedPerson }) => {
+    const [filterData, setFilterData] = useState(null);
+    const [allData, setAllData] = useState([]);
 
     // filter data accoring to location, gender and date
     const handleFilter = (event) => {
@@ -38,12 +39,36 @@ const UserList = ({ data, handleSelectedPerson }) => {
         fetchQueryData();
     }
 
+    const handleSeeAll = () => {
+        const fetchData = async () => {
+            let list = [];
+            try {
+                const querySnapshot = await getDocs(collection(db, "personcollection"));
+                querySnapshot.forEach((doc) => {
+                    list.push({ id: doc.id, ...doc.data() });
+                });
+                setFilterData(list);
+                //console.log(list);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        fetchData();
+    }
+
+
     return (
-        <div className='border-8 border-zinc-200 p-2 h-[90vh] overflow-y-auto'>
+        <div className='border-8 border-zinc-200 p-2 h-[90vh] '>
 
             {/* section one start */}
             <div className='flex justify-between items-start'>
                 <p className='text-2xl font-bold text-start'>Events</p>
+
+                <div onClick={handleSeeAll} className="form-control">
+                    <label className="label cursor-pointer">
+                        <span className="btn btn-sm border-none bg-blue-900 hover:bg-blue-700 hover:border-none text-sm font-semibold mr-1">See All</span>     
+                    </label>
+                </div>
 
                 {/* filter drop down start */}
                 <div>
@@ -68,12 +93,14 @@ const UserList = ({ data, handleSelectedPerson }) => {
                                 </div>
 
                                 <div className="form-control">
-                                    <input className='outline-blue-500 p-1 w-full bg-white border-primary' type="date" name="date" />
+                                    <input className='outline-blue-500 p-1 w-full bg-white border-primary' type="date" name="date" required />
                                 </div>
 
                             </div>
 
-                            <button type='submit' className='btn btn-sm border-none bg-blue-900 hover:bg-blue-700 hover:border-none'>submit</button>
+                            <div className='flex justify-evenly'>
+                                <button type='submit' className='btn btn-sm border-none bg-blue-900 hover:bg-blue-700 hover:border-none'>submit</button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -83,15 +110,23 @@ const UserList = ({ data, handleSelectedPerson }) => {
             {/* section one end */}
 
             {/* section two(List of person) start */}
-            <div className="grid grid-cols-1 gap-2 mt-3">
+
+            <div className="grid grid-cols-1 gap-2 mt-3 max-h-[92%] overflow-y-auto">
                 {
-                    filterData.map((person) => <ListCard
-                        key={person.id}
-                        person={person}
-                        handleSelectedPerson={handleSelectedPerson}
-                    ></ListCard>)
+                    filterData ?
+                        filterData.map((person) => <ListCard
+                            key={person.id}
+                            person={person}
+                            handleSelectedPerson={handleSelectedPerson}
+                        ></ListCard>)
+
+                        :
+                        <div className="flex justify-center items-center mx-auto">
+                            <h2 className="text-xl mt-5 font-semibold">Choose location, gender and date first</h2>
+                        </div>
                 }
             </div>
+
             {/* section two(List of person) end */}
         </div>
     );

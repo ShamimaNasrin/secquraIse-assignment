@@ -4,9 +4,7 @@ const ListCard = ({ person, handleSelectedPerson }) => {
     const { Name, Location, ID, Date, Time } = person;
     // console.log(Name, Location, ID, Date, Time);
     return (
-        <div>
-            {
-                person ?
+        <div>        
                     <div onClick={() => handleSelectedPerson(person)} className='bg-zinc-200 p-1 hover:bg-zinc-500 hover:text-white'>
                         <div className="flex justify-between">
                             <div className="flex flex-col justify-between font-medium text-start pl-1">
@@ -21,12 +19,6 @@ const ListCard = ({ person, handleSelectedPerson }) => {
 
                         </div>
                     </div>
-
-                    :
-                    <div className="flex justify-center items-center mx-auto">
-                        <h2 className="text-xl font-bold">Choose location, gender and date first</h2>
-                    </div>
-            }
 
         </div>
 
